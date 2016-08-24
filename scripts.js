@@ -16,18 +16,24 @@ var guessInput = document.getElementById('number-guess');
 
 var submitGuessButton = document.querySelector('.submit-guess');
 
+var randomNumber = getRandomNumber();
+
+function gameReset (){
+  document.location.reload(true);
+}
+
 function submitEvent(){
   var numberGuessed = parseInt(guessInput.value);
-  console.log(getRandomNumber());
+  console.log(randomNumber);
   console.log(numberGuessed);
-  if (getRandomNumber() === numberGuessed) {
+  if (randomNumber === numberGuessed) {
     message.innerText = "Yay! You are Right";
   }
 
-if (getRandomNumber() < numberGuessed) {
+if (randomNumber < numberGuessed) {
    message.innerText = "You're guess is too high";
   }
-  if (getRandomNumber() > numberGuessed) {
+  if (randomNumber > numberGuessed) {
     message.innerText = "You're guess is too low";
    }
 }
@@ -45,8 +51,7 @@ clearInputButton.addEventListener('click', function(e) {
 });
 
 resetGameButton.addEventListener('click', function(e) {
-  clearInput();
-  getRandomNumber();
+  gameReset();
 });
 //
 // e.preventDefault --> Stops buttons from doing the things. e is inside the function.
