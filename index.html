@@ -1,11 +1,12 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
     <header>
-      Number Guesser Game Making Changes
+      <h1> Number Guesser Game </h1>
     </header>
 
     <div class="instructions">
@@ -15,11 +16,15 @@
     <div class="message">
     </div>
 
-    <div class ="most-recent">
+    <div>
+      Your last guess was:
+        <div class="last-guess"></div>
     </div>
 
+    <div class="range-error">
+    </div>
     <section class="buttons">
-        <input id="number-guess">
+        <input type="number" id="number-guess" min="1" max="100">
         </input>
 
         <button class="submit-guess"> Submit a Guess
