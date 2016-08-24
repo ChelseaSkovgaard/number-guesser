@@ -8,15 +8,21 @@ var resetGameButton = document.querySelector('.reset-game');
 
 var messageRange = document.querySelector('.range-error');
 
-function getRandomNumber() {
-  return Math.floor( Math.random() * 100) + 1;
-}
-
 var guessInput = document.getElementById('number-guess');
 
 var submitGuessButton = document.querySelector('.submit-guess');
 
-var randomNumber = getRandomNumber();
+
+
+var submitRangeButton = document.querySelector('.submit-range');
+
+var min = document.querySelector('.min');
+
+var max = document.querySelector('.max');
+
+function getRandomNumber() {
+  return Math.floor( Math.random() * (max-min)) + min;
+}
 
 function disableClearButton() {
   clearInputButton.disabled = true;
@@ -37,8 +43,18 @@ disableClearButton();
 
 disableResetButton();
 
+function submitRange () {
+  var minUser = parseInt(min.value);
+  var maxUser = parseInt(max.value);
+}
+
+submitRangeButton.addEventListener('click', function(e) {
+  submitRange();
+});
+
 function submitEvent(){
   var numberGuessed = parseInt(guessInput.value);
+  var randomNumber = getRandomNumber();
   console.log(randomNumber);
   console.log(numberGuessed);
   if (randomNumber === numberGuessed) {
@@ -56,11 +72,11 @@ function submitEvent(){
 
    lastGuess.innerText = numberGuessed;
 
-   if (numberGuessed >= 100 || numberGuessed <= 1) {
+   if (numberGuessed >= max || numberGuessed <= min) {
      messageRange.innerText = "You're number is not between 1 and 100.";
    }
 
-   if (numberGuessed <= 100 && numberGuessed >=1) {
+   if (numberGuessed <= max && numberGuessed >=min) {
      messageRange.innerText ="";
    }
    enableClearButton();
