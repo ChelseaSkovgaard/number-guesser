@@ -12,8 +12,6 @@ function getRandomNumber() {
   return Math.floor( Math.random() * 100) + 1;
 }
 
-// var getRandomNumber = 10;
-
 var guessInput = document.getElementById('number-guess');
 
 var submitGuessButton = document.querySelector('.submit-guess');
@@ -27,11 +25,17 @@ function disableClearButton() {
 function enableClearButton(){
   clearInputButton.disabled = false;
 }
-disableClearButton();
 
 function disableResetButton() {
-  
+  resetGameButton.disabled = true;
 }
+
+function enableResetButton() {
+  resetGameButton.disabled = false;
+}
+disableClearButton();
+
+disableResetButton();
 
 function submitEvent(){
   var numberGuessed = parseInt(guessInput.value);
@@ -52,10 +56,15 @@ function submitEvent(){
 
    lastGuess.innerText = numberGuessed;
 
-   if (numberGuessed > 100 || numberGuessed <= 1) {
+   if (numberGuessed >= 100 || numberGuessed <= 1) {
      messageRange.innerText = "You're number is not between 1 and 100.";
    }
+
+   if (numberGuessed <= 100 && numberGuessed >=1) {
+     messageRange.innerText ="";
+   }
    enableClearButton();
+   enableResetButton();
 }
 
 submitGuessButton.addEventListener('click', function(e) {
