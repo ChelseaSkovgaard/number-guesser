@@ -12,17 +12,14 @@ var guessInput = document.getElementById('number-guess');
 
 var submitGuessButton = document.querySelector('.submit-guess');
 
-
-
 var submitRangeButton = document.querySelector('.submit-range');
 
-var min = document.querySelector('.min');
-
-var max = document.querySelector('.max');
-
-function getRandomNumber() {
-  return Math.floor( Math.random() * (max-min)) + min;
+// this is the problem!
+function getRandomNumber (min, max) {
+  debugger;
+  return (Math.floor(Math.random() * (max-min + 1)) + min);
 }
+
 
 function disableClearButton() {
   clearInputButton.disabled = true;
@@ -43,9 +40,16 @@ disableClearButton();
 
 disableResetButton();
 
+
+var min = document.querySelector('.min');
+var max = document.querySelector('.max');
+var userMin = document.querySelector('.min-range');
+var userMax = document.querySelector('.max-range');
+
 function submitRange () {
-  var minUser = parseInt(min.value);
-  var maxUser = parseInt(max.value);
+  userMin.innerText = "Your minimum number is: " + min.value;
+  userMax.innerText = "Your maximum number is: " + max.value;
+  // puts min and max in dom somewhere
 }
 
 submitRangeButton.addEventListener('click', function(e) {
@@ -53,8 +57,11 @@ submitRangeButton.addEventListener('click', function(e) {
 });
 
 function submitEvent(){
+
   var numberGuessed = parseInt(guessInput.value);
-  var randomNumber = getRandomNumber();
+  var randomNumber = getRandomNumber(parseInt(min.value), parseInt(max.value));
+  // var min = userinput min in dom
+  // var max = userinput max in dom
   console.log(randomNumber);
   console.log(numberGuessed);
   if (randomNumber === numberGuessed) {
