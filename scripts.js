@@ -1,22 +1,22 @@
-var guessInput = document.getElementById('number-guess');
+var message = document.querySelector('.message');
 
-var randomNumber = getRandomNumber();
-
-var submitGuessButton = document.querySelector('.submit-guess');
+var lastGuess = document.querySelector('.last-guess');
 
 var clearInputButton = document.querySelector('.clear-input');
 
 var resetGameButton = document.querySelector('.reset-game');
 
-var lastGuess = document.querySelector('.last-guess');
-
-var message = document.querySelector('.message');
-
 var messageRange = document.querySelector('.range-error');
+
+var guessInput = document.getElementById('number-guess');
+
+var submitGuessButton = document.querySelector('.submit-guess');
 
 function getRandomNumber() {
   return Math.floor( Math.random() * 100) + 1;
 }
+
+var randomNumber = getRandomNumber();
 
 function disableClearButton() {
   clearInputButton.disabled = true;
@@ -26,8 +26,6 @@ function enableClearButton(){
   clearInputButton.disabled = false;
 }
 
-disableClearButton();
-
 function disableResetButton() {
   resetGameButton.disabled = true;
 }
@@ -35,19 +33,22 @@ function disableResetButton() {
 function enableResetButton() {
   resetGameButton.disabled = false;
 }
+disableClearButton();
 
 disableResetButton();
 
 function submitEvent(){
   var numberGuessed = parseInt(guessInput.value);
+  console.log(randomNumber);
+  console.log(numberGuessed);
   if (randomNumber === numberGuessed) {
-    message.innerText = "Yay! You guessed the right number!";
+    message.innerText = "Yay! You are Right!";
   }
   if (randomNumber < numberGuessed) {
-   message.innerText = "Your guess is too high.";
+   message.innerText = "Your guess is too high";
   }
   if (randomNumber > numberGuessed) {
-    message.innerText = "Your guess is too low.";
+    message.innerText = "Your guess is too low";
    }
 
    lastGuess.innerText = numberGuessed;
